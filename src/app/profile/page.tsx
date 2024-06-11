@@ -43,7 +43,7 @@ export default function ProfilePage() {
         onClick={getUserDetails}
         className="bg-green-800 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >GetUser Details</button>
-
+<Link href={"/"}>Click here to visit Main Page</Link>
 
             </div>
     )
