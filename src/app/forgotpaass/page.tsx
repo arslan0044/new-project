@@ -1,17 +1,17 @@
 "use client";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
 
 
 
-export default function forgotPassPage() {
-    const [user, setUser] = React.useState({
+export default function ForgotPassPage() {
+    const [user, setUser] = useState({
         email: "",
     }) 
-       const [buttonDisabled, setButtonDisabled] = React.useState(false);
-    const [loading, setLoading] = React.useState(false);
+       const [buttonDisabled, setButtonDisabled] = useState(false);
+    const [loading, setLoading] = useState(false);
     const onLogin = async () => {
         try {
             setLoading(true);
