@@ -10,15 +10,22 @@ connect();
 export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
-    const { username, email, password } = reqBody;
+    const { username, email, password, phone_number, name } = reqBody;
     console.log(reqBody);
 
     //check if user already exists
-    const user = await User.findOne({ email });
+    const user_email = await User.findOne({ email });
+    const user_name = await User.findOne({ username });
 
-    if (user) {
+    if (user_email) {
       return NextResponse.json(
-        { error: "User already exists" },
+        { error: `Email ${email} already exists` },
+        { status: 400 },
+      );
+    }
+    if (user_name) {
+      return NextResponse.json(
+        { error: `Username ${username} already exists`},
         { status: 400 }
       );
     }
@@ -28,6 +35,8 @@ export async function POST(request: NextRequest) {
     const hashedPassword = await bcryptjs.hash(password, salt);
     const newUser = new User({
       username,
+      name,
+      phone_number,
       email,
       password: hashedPassword,
     });

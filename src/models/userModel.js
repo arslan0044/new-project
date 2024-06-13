@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: [true, "Please provide a username"],
-    unique: true,
-  },
   email: {
     type: String,
     required: [true, "Please provide a email"],
+    unique: true,
+  },
+  username: {
+    type: String,
+    required: [true, "Please provide a username"],
     unique: true,
   },
   password: {
@@ -19,9 +19,21 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  isAdmin: {
-    type: Boolean,
-    default: false,
+  isAdmin:{
+    type:Boolean,
+    default:false
+  },
+  isMerchant:{
+    type:Boolean,
+    default:false
+  },
+  name: {
+    type: String,
+    trim: true, // Remove leading/trailing whitespace
+  },
+  phone_number: {
+    type: String,
+    trim: true, // Remove leading/trailing whitespace (optional)
   },
   forgotPasswordToken: String,
   forgotPasswordTokenExpiry: Date,
